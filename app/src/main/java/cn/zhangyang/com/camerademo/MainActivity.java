@@ -139,7 +139,7 @@ public class MainActivity extends BaseActivity {
      */
     private void pickPhoto() {
         try {
-            requestPermission(Constants.READ_EXTERNAL_REQUEST_CODE,new String[]{"android.permission.WRITE_EXTERNAL_STORAGE","android.permission.READ_EXTERNAL_STORAGE"} , new Runnable() {
+            requestPermission(Constants.READ_EXTERNAL_REQUEST_CODE,new String[]{"android.permission.RECORD_AUDIO","android.permission.WRITE_EXTERNAL_STORAGE","android.permission.READ_EXTERNAL_STORAGE"} , new Runnable() {
                 @Override
                 public void run() {
                     Intent intent = new Intent(Intent.ACTION_PICK);

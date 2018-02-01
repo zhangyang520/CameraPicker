@@ -66,7 +66,6 @@ public abstract class BaseActivity extends AppCompatActivity {
     /**
      * 请求权限
      * @param id 请求授权的id 唯一标识即可
-     * @param permission 请求的权限
      * @param allowableRunnable 同意授权后的操作
      * @param disallowableRunnable 禁止权限后的操作
      */
@@ -124,13 +123,20 @@ public abstract class BaseActivity extends AppCompatActivity {
     public void onRequestPermissionsResult(int requestCode,  String[] permissions,  int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
 
-        if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+        //防止有多个权限的请求 要分别得出 每个权限的结果值
+        int resultGrant=PackageManager.PERMISSION_GRANTED;
+        for(int i=0;i<permissions.length;i++){
+            resultGrant=resultGrant+grantResults[i];
+        }
+
+        //如果结果值 相加 都为 PERMISSION_GRANTED
+        if (resultGrant== PackageManager.PERMISSION_GRANTED) {
             Runnable allowRun = allowablePermissionRunnables.get(requestCode);
             if(allowRun!=null){
                 allowRun.run();
             }
-
         } else {
+            //否则 不允许的执行!
             Runnable disallowRun = disallowablePermissionRunnables.get(requestCode);
             if(disallowRun!=null){
                 disallowRun.run();
