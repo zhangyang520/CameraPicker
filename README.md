@@ -18,3 +18,17 @@
 <ul><li>裁剪图片</li></ul>
 <img src="/gif/7.png"  height="177.8px" width="100px" alt="最终生成图片画面"/>
 <ul><li>最终生成图片画面</li></ul>
+
+
+编译过程:
+###
+  allprojects {
+		repositories {
+			...
+			maven { url 'https://jitpack.io' }
+		}
+	}
+  
+  dependencies {
+	        compile 'com.github.zhangyang520:CameraPicker:1.0'
+	}
